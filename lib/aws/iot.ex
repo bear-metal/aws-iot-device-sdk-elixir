@@ -1,7 +1,7 @@
-defmodule Aws.Iot do
+defmodule Aws.IotDevice do
   use Application
 
-  @root_supervisor Aws.Iot.Supervisor
+  @root_supervisor Aws.IotDevice.Supervisor
 
   # See http://elixir-lang.org/docs/stable/elixir/Application.html
   # for more information on OTP Applications
@@ -11,7 +11,7 @@ defmodule Aws.Iot do
     children = [
       # Define workers and child supervisors to be supervised
       # worker(AwsIot.Worker, [arg1, arg2, arg3]),
-      #supervisor(Aws.Iot.ThingShadow.Supervisor, [])
+      #supervisor(Aws.IotDevice.ThingShadow.Supervisor, [])
     ]
 
     # See http://elixir-lang.org/docs/stable/elixir/Supervisor.html

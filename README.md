@@ -22,12 +22,12 @@ IoT device SDK for Elixir, and includes examples demonstrating use of the
 SDK APIs.
 
 #### MQTT Connection
-This package is built on top of [emqttc](https://github.com/emqtt/emqttc) and provides two modules: 'Aws.Iot.Device'
-and 'Aws.Iot.ThingShadow'.  The 'Device' module wraps [emqttc](https://github.com/emqtt/emqttc) to provide a
+This package is built on top of [emqttc](https://github.com/emqtt/emqttc) and provides two modules: 'Aws.IotDevice.Device'
+and 'Aws.IotDevice.ThingShadow'.  The 'Device' module wraps [emqttc](https://github.com/emqtt/emqttc) to provide a
 secure connection to the AWS IoT platform and expose the [emqttc](https://github.com/emqtt/emqttc) API upward.  It provides features to simplify handling of intermittent connections, including progressive backoff retries, automatic re-subscription upon connection, and queued offline publishing.
 
 #### Thing Shadows
-The 'Aws.Iot.ThingShadow' module implements additional functionality for accessing Thing Shadows via the AWS IoT
+The 'Aws.IotDevice.ThingShadow' module implements additional functionality for accessing Thing Shadows via the AWS IoT
 API; the ThingShadow module allows devices to update, be notified of changes to,
 get the current state of, or delete Thing Shadows from AWS IoT.  Thing
 Shadows allow applications and devices to synchronize their state on the AWS IoT platform.
@@ -63,7 +63,7 @@ If [available in Hex](https://hex.pm/docs/publish), the package can be installed
 The Mix configuration in config/config.exs should look like this:
 
 ```elixir
-config :aws_iot, Aws.Iot.ThingShadow.Client,
+config :aws_iot, Aws.IotDevice.ThingShadow.Client,
   host: "xxxxxxxxx.iot.<region>.amazonaws.com",
   port: 8883,
   client_id: "xxxxxxx",
@@ -80,7 +80,7 @@ config :aws_iot, Aws.Iot.ThingShadow.Client,
 You can try out the below in IEx:
 
 ```elixir
-alias Aws.Iot.ThingShadow
+alias Aws.IotDevice.ThingShadow
 
 # Initializes a new ThingShadow.Client process
 # Events from this client will be forwarded to self()
@@ -116,7 +116,7 @@ Process.info(self)[:messages]
   2. Create a GenServer module that will subscribe to the event bus.
 
   ```elixir
-    alias Aws.Iot.ThingShadow
+    alias Aws.IotDevice.ThingShadow
 
     def init(_args) do
       Phoenix.PubSub.subscribe(MyThings.PubSub, "thing_shadow_event")

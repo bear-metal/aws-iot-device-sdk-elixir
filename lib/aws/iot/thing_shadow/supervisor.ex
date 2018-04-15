@@ -1,4 +1,4 @@
-defmodule Aws.Iot.ThingShadow.Supervisor do
+defmodule Aws.IotDevice.ThingShadow.Supervisor do
   
   @moduledoc ~S"""
   Module-based supervisor for `ThingShadow.Client`.
@@ -16,7 +16,7 @@ defmodule Aws.Iot.ThingShadow.Supervisor do
   @doc """
   Starts the supervisor
   """
-  def start_link(client_name \\ Aws.Iot.ThingShadow.Client, opts \\ [])
+  def start_link(client_name \\ Aws.IotDevice.ThingShadow.Client, opts \\ [])
   def start_link(client_name, opts) do
     supervisor_name = name_concat(client_name, "Supervisor")
     # To start the supervisor, the init/1 callback will be invoked in the given module, with init_args as its argument
@@ -35,7 +35,7 @@ defmodule Aws.Iot.ThingShadow.Supervisor do
     # This is so that when GenEvent.manager is restarted with a new pid, the reference is still valid.
     children = [
       worker(GenEvent, [[name: event_manager_name]]),
-      worker(Aws.Iot.ThingShadow.Client, [event_manager_name, mqttc_options_or_app_name, [name: client_name]])
+      worker(Aws.IotDevice.ThingShadow.Client, [event_manager_name, mqttc_options_or_app_name, [name: client_name]])
     ]
 
     # Init must return a supervisor spec

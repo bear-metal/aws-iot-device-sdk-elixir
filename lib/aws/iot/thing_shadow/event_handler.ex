@@ -1,4 +1,4 @@
-defmodule Aws.Iot.ThingShadow.EventHandler do
+defmodule Aws.IotDevice.ThingShadow.EventHandler do
 
   @moduledoc ~S"""
   GenEvent executes handlers sequentially in a single loop of the GenEvent.manager process.

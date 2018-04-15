@@ -1,4 +1,4 @@
-defmodule Aws.Iot.ThingShadow.Client do
+defmodule Aws.IotDevice.ThingShadow.Client do
 
   @moduledoc ~S"""
   Implements the AWS IoT ThingShadow Data Flow behaviour.
